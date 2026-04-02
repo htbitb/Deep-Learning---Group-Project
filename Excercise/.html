@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo CIFAR-10 - Group 5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-gradient { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-microchip text-blue-400"></i>
+                <span class="font-bold tracking-tight">CIFAR-10 Project | Group_5</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm uppercase font-medium">
+                <a href="#intro" class="hover:text-blue-400">Giới thiệu</a>
+                <a href="#dataset" class="hover:text-blue-400">Dataset</a>
+                <a href="#models" class="hover:text-blue-400">Mô hình</a>
+                <a href="#results" class="hover:text-blue-400">Kết quả</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-gradient text-white py-20 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">PHÂN LOẠI ẢNH TRÊN TẬP DỮ LIỆU CIFAR-10</h1>
+            <p class="text-blue-300 text-lg mb-8 italic">Môn học: Deep Learning and its Applications</p>
+            <div class="inline-block bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                <p class="text-sm uppercase tracking-widest text-slate-400 mb-4 font-bold">Giảng viên hướng dẫn</p>
+                <p class="text-xl font-bold mb-6 text-white">TS. Lê Thành Sách</p>
+                <hr class="border-slate-700 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <p class="font-semibold text-blue-400">Hà Thanh Bình</p>
+                        <p class="text-xs opacity-70">2470732</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-blue-400">Trần Đăng Hùng</p>
+                        <p class="text-xs opacity-70">2470750</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-blue-400">Nguyễn Võ Thái Triều</p>
+                        <p class="text-xs opacity-70">2470577</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 space-y-16 max-w-6xl">
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <section id="intro" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 card-hover">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">1. Giới thiệu</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Dự án thực hiện bài toán phân loại ảnh 10 lớp, so sánh hiệu năng giữa các kiến trúc truyền thống 
+                    (MLP, CNN) và các kiến trúc hiện đại dựa trên Transformer, RNN nhằm tìm ra mô hình tối ưu cho dữ liệu ảnh kích thước nhỏ.
+                </p>
+            </section>
+
+            <section id="dataset" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 card-hover">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 border-l-4 border-blue-500 pl-3">2. Dataset</h2>
+                <ul class="space-y-2 text-slate-600">
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i><strong>CIFAR-10:</strong> 60,000 ảnh màu (32x32)</li>
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i><strong>Phân chia:</strong> 45k Train / 5k Val / 10k Test</li>
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i><strong>Augmentation:</strong> RandomCrop, HorizontalFlip</li>
+                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i><strong>Normalization:</strong> Theo Mean/Std của CIFAR-10</li>
+                </ul>
+            </section>
+        </div>
+
+        <section class="bg-slate-900 text-white p-10 rounded-3xl shadow-2xl">
+            <h2 class="text-3xl font-bold mb-8 text-center">Training Pipeline</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 border border-slate-700 rounded-xl">
+                    <p class="text-blue-400 text-sm uppercase font-bold">Optimizer</p>
+                    <p class="text-xl">Adam</p>
+                </div>
+                <div class="p-4 border border-slate-700 rounded-xl">
+                    <p class="text-blue-400 text-sm uppercase font-bold">Batch Size</p>
+                    <p class="text-xl">128</p>
+                </div>
+                <div class="p-4 border border-slate-700 rounded-xl">
+                    <p class="text-blue-400 text-sm uppercase font-bold">Loss Function</p>
+                    <p class="text-lg">CrossEntropy</p>
+                </div>
+                <div class="p-4 border border-slate-700 rounded-xl">
+                    <p class="text-blue-400 text-sm uppercase font-bold">Epochs</p>
+                    <p class="text-xl">30</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="models" class="space-y-8">
+            <h2 class="text-3xl font-bold text-slate-800 text-center">Hệ thống các Mô hình thực nghiệm</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-slate-400">
+                    <h3 class="font-bold text-lg mb-4 uppercase tracking-tighter">Baseline</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>Softmax Regression</li>
+                        <li>MLP (Multi-layer Perceptron)</li>
+                        <li>CNN (Basic)</li>
+                        <li>ViT (Torchvision Built-in)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500">
+                    <h3 class="font-bold text-lg mb-4 uppercase tracking-tighter text-blue-600">Advanced</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>Custom Transformer Encoder</li>
+                        <li>CNN + Transformer Hybrid</li>
+                        <li>Overlap Patch ViT</li>
+                        <li>Channel-as-Token ViT</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-orange-400">
+                    <h3 class="font-bold text-lg mb-4 uppercase tracking-tighter text-orange-600">RNN variants</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>LSTM (Row-wise)</li>
+                        <li>GRU (Row-wise)</li>
+                        <li>LSTM (Patch-wise)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="bg-white p-8 rounded-2xl shadow-lg border border-slate-200">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 text-center">Kết quả & Nhận xét</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-blue-700 italic underline">Kết quả chính:</h3>
+                    <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500">
+                        <ul class="list-disc ml-5 space-y-3 font-medium">
+                            <li><strong>CNN và Hybrid (CNN+Transformer)</strong> đạt hiệu năng vượt trội nhất.</li>
+                            <li>ViT thuần túy chưa vượt qua CNN do đặc thù dữ liệu CIFAR-10 nhỏ, thiếu Pre-training.</li>
+                            <li>Các mô hình RNN cho thấy sự không phù hợp rõ rệt khi xử lý dữ liệu có tính không gian cao như ảnh.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-slate-700 italic underline">Nhận xét kỹ thuật:</h3>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <span class="font-bold text-blue-600">CNN:</span> Khai thác cực tốt các đặc trưng không gian cục bộ (Local features).
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg">
+                            <span class="font-bold text-blue-600">Transformer:</span> Mạnh về việc thiết lập các mối quan hệ toàn cục (Global context).
+                        </div>
+                        <div class="p-4 bg-indigo-50 rounded-lg border border-indigo-100">
+                            <span class="font-bold text-indigo-700">Hybrid:</span> Hiệu quả nhất nhờ kết hợp ưu điểm của cả hai kiến trúc.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <section class="bg-red-50 p-8 rounded-xl border border-red-100">
+                <h3 class="text-xl font-bold text-red-800 mb-4">Hạn chế</h3>
+                <p class="text-red-700 text-sm">Chưa sử dụng Pre-training khổng lồ. Dataset CIFAR-10 có kích thước ảnh khá nhỏ (32x32), gây khó khăn cho việc phân mảnh Patch của Transformer.</p>
+            </section>
+            <section class="bg-green-50 p-8 rounded-xl border border-green-100">
+                <h3 class="text-xl font-bold text-green-800 mb-4">Hướng phát triển</h3>
+                <ul class="text-green-700 text-sm list-decimal ml-5 space-y-1">
+                    <li>Sử dụng Pre-trained ViT.</li>
+                    <li>Tăng cường dữ liệu (AutoAugment).</li>
+                    <li>Tối ưu Learning Rate Scheduler.</li>
+                    <li>Bổ sung đánh giá bằng F1-Score và Confusion Matrix.</li>
+                </ul>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-900 text-white py-12 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <p class="opacity-60 mb-2">© 2026 Deep Learning Course - Group_5</p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://colab.research.google.com" target="_blank" class="text-blue-400 hover:underline"><i class="fas fa-code mr-1"></i> Google Colab</a>
+                <span class="opacity-30">|</span>
+                <a href="#" class="text-blue-400 hover:underline"><i class="fab fa-github mr-1"></i> GitHub Repo</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
