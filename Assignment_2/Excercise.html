@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo BTL Deep Learning - Group 5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .bg-gradient-nav { background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <nav class="bg-gradient-nav text-white p-4 sticky top-0 z-50 shadow-xl">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-brain text-2xl"></i>
+                <span class="font-bold text-xl uppercase tracking-wider">Group_5 Portfolio</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#resources" class="hover:text-blue-200 transition">Tài nguyên</a>
+                <a href="#intro" class="hover:text-blue-200 transition">Giới thiệu</a>
+                <a href="#dataset" class="hover:text-blue-200 transition">Dataset</a>
+                <a href="#models" class="hover:text-blue-200 transition">Mô hình</a>
+                <a href="#comparison" class="hover:text-blue-200 transition">So sánh</a>
+                <a href="#summary" class="hover:text-blue-200 transition">Tổng kết</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white py-16 border-b">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-4">BÀI TẬP LỚN SỐ 2: HỌC SÂU VÀ ỨNG DỤNG TRONG THỊ GIÁC MÁY TÍNH</h1>
+            <div class="flex flex-wrap justify-center gap-4 text-lg text-slate-600 mb-6">
+                <span class="bg-blue-100 px-4 py-1 rounded-full text-blue-700 font-semibold italic">GVHD: TS. Lê Thành Sách</span>
+            </div>
+            <div class="bg-slate-100 inline-block p-6 rounded-2xl border border-slate-200">
+                <h3 class="font-bold mb-3 text-slate-700 uppercase tracking-tighter">Thành viên Nhóm 5:</h3>
+                <ul class="text-left space-y-1">
+                    <li><i class="fas fa-user-circle mr-2 text-blue-500"></i>Hà Thanh Bình - 2470732</li>
+                    <li><i class="fas fa-user-circle mr-2 text-blue-500"></i>Trần Đăng Hùng - 2470750</li>
+                    <li><i class="fas fa-user-circle mr-2 text-blue-500"></i>Nguyễn Võ Thái Triều - 2470577</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-5xl">
+
+        <!-- Resources -->
+        <section id="resources" class="mb-20">
+            <h2 class="text-3xl font-bold border-l-8 border-blue-600 pl-4 mb-8">🔗 Tài nguyên Dự án</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="https://www.youtube.com/watch?v=I9crtETEFvA" target="_blank" class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md border border-slate-200 transition">
+                    <i class="fas fa-play-circle text-red-500 text-2xl mr-3"></i>
+                    <span class="font-semibold">Video Demo</span>
+                </a>
+                <a href="#" class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md border border-slate-200 transition">
+                    <i class="fab fa-youtube text-red-600 text-2xl mr-3"></i>
+                    <span class="font-semibold">Thuyết trình</span>
+                </a>
+                <a href="https://colab.research.google.com/drive/1dKFK33-iFE0A8DdZix_kaZXFaLiiD1pP" target="_blank" class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md border border-slate-200 transition">
+                    <i class="fas fa-code text-indigo-600 text-2xl mr-3"></i>
+                    <span class="font-semibold">Mã nguồn Colab</span>
+                </a>
+                <a href="https://www.canva.com/design/DAHGQJpyQYY/_TiKLyYKaJ5oUCk4TyLCCw/edit" target="_blank" class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md border border-slate-200 transition">
+                    <i class="fas fa-file-pdf text-orange-500 text-2xl mr-3"></i>
+                    <span class="font-semibold">Report PDF</span>
+                </a>
+            </div>
+        </section>
+
+        <hr class="mb-20">
+
+        <!-- Introduction -->
+        <section id="intro" class="mb-20">
+            <div class="flex items-center mb-8">
+                <i class="fas fa-crosshairs text-4xl text-blue-600 mr-4"></i>
+                <h2 class="text-4xl font-bold uppercase">Object Detection</h2>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">1. Giới thiệu</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-5 rounded-xl border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-700 mb-2">Bài toán</h4>
+                            <p class="text-slate-700 leading-relaxed"><strong>Phát hiện</strong> đối tượng trong ảnh, <strong>xác định bounding box</strong> và <strong>gán nhãn phân loại</strong> cho mỗi đối tượng.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-xl border-l-4 border-slate-400">
+                            <h4 class="font-bold text-slate-700 mb-2">Tập dữ liệu</h4>
+                            <p class="text-slate-700 leading-relaxed"><strong>COCO 2017 validation set (val2017)</strong> làm validation set cho các mô hình pretrained.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-blue-700 mb-3">Mục tiêu — So sánh các mô hình pretrained:</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 text-center">
+                            <i class="fas fa-bolt text-yellow-500 text-2xl mb-2"></i>
+                            <p class="font-bold">YOLO</p>
+                            <p class="text-sm text-slate-500">One-stage (CNN)</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200 text-center">
+                            <i class="fas fa-layer-group text-green-600 text-2xl mb-2"></i>
+                            <p class="font-bold">Faster R-CNN</p>
+                            <p class="text-sm text-slate-500">Two-stage (CNN)</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 text-center">
+                            <i class="fas fa-project-diagram text-purple-600 text-2xl mb-2"></i>
+                            <p class="font-bold">DETR</p>
+                            <p class="text-sm text-slate-500">One-stage (Transformer)</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 bg-slate-50 p-4 rounded-xl">
+                        <p class="font-semibold text-slate-700 mb-2">Metrics đánh giá:</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-mono">mAP@0.5</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-mono">mAP@0.5:0.95</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-mono">FPS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="mb-20">
+
+        <!-- Dataset -->
+        <section id="dataset" class="mb-20">
+            <div class="flex items-center mb-8">
+                <i class="fas fa-database text-4xl text-emerald-600 mr-4"></i>
+                <h2 class="text-4xl font-bold uppercase">Tập dữ liệu & Chuẩn bị</h2>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 space-y-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-800 mb-4">2. Về tập dữ liệu — COCO 2017</h3>
+                    <img src="assets/coco_dataset.png" alt="COCO Dataset" class="rounded-lg border shadow-sm mx-auto max-w-full mb-4">
+                    <div class="text-center">
+                        <a href="https://cocodataset.org/#download" target="_blank" class="text-blue-600 underline font-semibold">Dataset Download Link</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-800 mb-4">3. Chuẩn bị và Tăng cường dữ liệu</h3>
+                    <img src="assets/coco_class_distribution.png" alt="COCO Class Distribution" class="rounded-lg border shadow-sm mx-auto max-w-full mb-6">
+
+                    <div class="bg-emerald-50 p-6 rounded-xl border-l-8 border-emerald-500 mb-6">
+                        <h4 class="font-bold text-emerald-800 mb-3">Pipeline: Albumentations + <code>bbox_params</code> (đồng bộ ảnh &amp; bbox)</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i><strong>Flip:</strong> Lật ngang → học đối xứng.</li>
+                            <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i><strong>Affine:</strong> Scale, dịch, xoay, shear → bền với biến dạng hình học.</li>
+                            <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i><strong>Color (OneOf):</strong> Sáng/contrast, HSV, CLAHE → thích nghi ánh sáng.</li>
+                            <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i><strong>Blur/Noise (OneOf):</strong> Blur, motion blur, noise → chịu nhiễu/mờ.</li>
+                            <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i><strong>bbox_params:</strong> Giữ bbox hợp lệ (format COCO, lọc bbox nhỏ/che khuất, clip).</li>
+                        </ul>
+                        <p class="mt-3 text-sm font-semibold text-emerald-700">Kết quả: Dữ liệu đa dạng hơn → mô hình tổng quát tốt hơn.</p>
+                    </div>
+                    <img src="assets/coco_data_augmentation.png" alt="Data Augmentation" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                </div>
+            </div>
+        </section>
+
+        <hr class="mb-20">
+
+        <!-- Models -->
+        <section id="models" class="mb-20">
+            <div class="flex items-center mb-8">
+                <i class="fas fa-robot text-4xl text-indigo-600 mr-4"></i>
+                <h2 class="text-4xl font-bold uppercase">Kết quả các Mô hình</h2>
+            </div>
+
+            <div class="space-y-12">
+
+                <!-- YOLO -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-bold text-yellow-700 mb-6 flex items-center">
+                        <i class="fas fa-bolt mr-3"></i>4. Mô hình YOLO
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-700 mb-3">Kết quả đánh giá</h4>
+                            <img src="assets/report_yolo11s.png" alt="YOLO Report" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                        </div>
+                        <div class="border-t pt-6">
+                            <h4 class="text-lg font-bold text-slate-700 mb-3">Trực quan hóa kết quả đánh giá</h4>
+                            <img src="assets/report_yolo11s_visualization.png" alt="YOLO Visualization" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Faster R-CNN -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-bold text-green-700 mb-6 flex items-center">
+                        <i class="fas fa-layer-group mr-3"></i>5. Mô hình Faster R-CNN
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-700 mb-3">Kết quả đánh giá</h4>
+                            <img src="assets/report_faster_rcnn.png" alt="Faster R-CNN Report" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                        </div>
+                        <div class="border-t pt-6">
+                            <h4 class="text-lg font-bold text-slate-700 mb-3">Trực quan hóa kết quả đánh giá</h4>
+                            <img src="assets/report_faster_rcnn_visualization.png" alt="Faster R-CNN Visualization" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DETR -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-bold text-purple-700 mb-6 flex items-center">
+                        <i class="fas fa-project-diagram mr-3"></i>6. Mô hình DETR
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-700 mb-3">Kết quả đánh giá</h4>
+                            <img src="assets/report_detr.png" alt="DETR Report" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                        </div>
+                        <div class="border-t pt-6">
+                            <h4 class="text-lg font-bold text-slate-700 mb-3">Trực quan hóa kết quả đánh giá</h4>
+                            <img src="assets/report_detr_visualization.png" alt="DETR Visualization" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="mb-20">
+
+        <!-- Comparison & Error Analysis -->
+        <section id="comparison" class="mb-20">
+            <div class="flex items-center mb-8">
+                <i class="fas fa-chart-bar text-4xl text-rose-600 mr-4"></i>
+                <h2 class="text-4xl font-bold uppercase">So sánh & Phân tích lỗi</h2>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 space-y-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-rose-800 mb-4">7. Bảng so sánh các chỉ số hiệu suất</h3>
+                    <img src="assets/model_metrics.png" alt="Model Metrics" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                </div>
+
+                <div class="border-t pt-8">
+                    <h3 class="text-2xl font-bold text-rose-800 mb-6">7.3 Phân tích lỗi (Error Analysis)</h3>
+
+                    <div class="mb-6">
+                        <h4 class="text-lg font-bold text-slate-700 mb-3">Dự đoán từ các mô hình</h4>
+                        <img src="assets/model_predictions.png" alt="Model Predictions" class="rounded-lg border shadow-sm mx-auto max-w-full">
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-5 rounded-xl border-l-4 border-slate-400">
+                            <h4 class="font-bold text-slate-700 mb-3">1) Đặc trưng dữ liệu COCO</h4>
+                            <ul class="text-sm space-y-2 text-slate-600">
+                                <li><i class="fas fa-exclamation-circle text-rose-400 mr-2"></i>Mất cân bằng lớp (lớp <code>person</code> chiếm ưu thế).</li>
+                                <li><i class="fas fa-exclamation-circle text-rose-400 mr-2"></i>Vật thể nhỏ/xa → dễ FN, bbox kém chính xác.</li>
+                                <li><i class="fas fa-exclamation-circle text-rose-400 mr-2"></i>Che khuất, chồng lấp → nhầm lớp, tách bbox kém.</li>
+                                <li><i class="fas fa-exclamation-circle text-rose-400 mr-2"></i>Bối cảnh phức tạp → tăng FP.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-xl border-l-4 border-slate-400">
+                            <h4 class="font-bold text-slate-700 mb-3">2) Theo kiến trúc mô hình</h4>
+                            <ul class="text-sm space-y-2 text-slate-600">
+                                <li><strong class="text-yellow-700">YOLO:</strong> Ưu tiên tốc độ → dễ FP; nhạy với <code>conf/iou</code>; yếu với object nhỏ.</li>
+                                <li><strong class="text-green-700">Faster R-CNN:</strong> Phụ thuộc proposal (RPN) → thiếu proposal gây FN; nhầm lớp gần nhau.</li>
+                                <li><strong class="text-purple-700">DETR:</strong> Kém với object nhỏ/đậm đặc; số query cố định; dễ FN nếu tuning chưa tốt.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-rose-50 p-5 rounded-xl border-l-4 border-rose-400">
+                            <h4 class="font-bold text-slate-700 mb-3">3) Lỗi phổ biến</h4>
+                            <ul class="text-sm space-y-2 text-slate-600">
+                                <li><i class="fas fa-times-circle text-rose-500 mr-2"></i>Nhầm giữa các lớp tương tự (book/bottle/cup, car/truck/bus).</li>
+                                <li><i class="fas fa-times-circle text-rose-500 mr-2"></i>Sai lệch bbox → IoU thấp → bị tính FP/FN.</li>
+                                <li><i class="fas fa-times-circle text-rose-500 mr-2"></i>Nhận nhầm nền thành object.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-5 rounded-xl border-l-4 border-green-500">
+                            <h4 class="font-bold text-slate-700 mb-3">4) Hướng cải thiện</h4>
+                            <ul class="text-sm space-y-2 text-slate-600">
+                                <li><i class="fas fa-arrow-circle-right text-green-600 mr-2"></i>Tối ưu <code>conf</code>, <code>iou</code>, <code>max_det</code>.</li>
+                                <li><i class="fas fa-arrow-circle-right text-green-600 mr-2"></i>Đánh giá theo kích thước object.</li>
+                                <li><i class="fas fa-arrow-circle-right text-green-600 mr-2"></i>Tăng cường dữ liệu (object nhỏ, occlusion, ánh sáng).</li>
+                                <li><i class="fas fa-arrow-circle-right text-green-600 mr-2"></i>Dùng ensemble/calibration giảm FP.</li>
+                                <li><i class="fas fa-arrow-circle-right text-green-600 mr-2"></i>Phân tích và tinh chỉnh theo từng class.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="mb-20">
+
+        <!-- Summary -->
+        <section id="summary" class="mb-20">
+            <h2 class="text-3xl font-bold border-l-8 border-slate-800 pl-4 mb-8">💡 Tổng kết</h2>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="bg-slate-800 text-white">
+                            <th class="px-5 py-4 text-left font-semibold">Nhóm kiến trúc</th>
+                            <th class="px-5 py-4 text-left font-semibold">Đại diện</th>
+                            <th class="px-5 py-4 text-left font-semibold">Ưu điểm</th>
+                            <th class="px-5 py-4 text-left font-semibold">Nhược điểm</th>
+                            <th class="px-5 py-4 text-left font-semibold">Phù hợp khi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-yellow-50 transition">
+                            <td class="px-5 py-4 font-medium text-yellow-700">One-stage (CNN)</td>
+                            <td class="px-5 py-4 font-bold">YOLO</td>
+                            <td class="px-5 py-4 text-slate-600">Tốc độ cao, pipeline đơn giản, triển khai realtime tốt.</td>
+                            <td class="px-5 py-4 text-slate-600">Dễ tăng FP, nhạy với ngưỡng <code>conf/iou</code>, thường kém hơn ở object nhỏ/khó.</td>
+                            <td class="px-5 py-4 text-slate-600">Cần suy luận nhanh, tài nguyên giới hạn.</td>
+                        </tr>
+                        <tr class="hover:bg-green-50 transition">
+                            <td class="px-5 py-4 font-medium text-green-700">Two-stage (CNN)</td>
+                            <td class="px-5 py-4 font-bold">Faster R-CNN</td>
+                            <td class="px-5 py-4 text-slate-600">Độ chính xác thường ổn định, localization tốt hơn trong nhiều bối cảnh.</td>
+                            <td class="px-5 py-4 text-slate-600">Suy luận chậm hơn, chi phí tính toán cao, pipeline phức tạp hơn.</td>
+                            <td class="px-5 py-4 text-slate-600">Ưu tiên chất lượng hơn tốc độ.</td>
+                        </tr>
+                        <tr class="hover:bg-purple-50 transition">
+                            <td class="px-5 py-4 font-medium text-purple-700">Transformer-based</td>
+                            <td class="px-5 py-4 font-bold">DETR</td>
+                            <td class="px-5 py-4 text-slate-600">Thiết kế end-to-end, giảm phụ thuộc hậu xử lý thủ công, biểu diễn ngữ cảnh tốt.</td>
+                            <td class="px-5 py-4 text-slate-600">FPS thấp hơn, nặng tài nguyên, có thể yếu với object nhỏ/dày đặc nếu chưa tinh chỉnh kỹ.</td>
+                            <td class="px-5 py-4 text-slate-600">Bài toán cần mô hình hóa quan hệ toàn cục, chấp nhận tốc độ thấp hơn.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="opacity-80 font-serif">© 2026 Deep Learning Course - Bach Khoa University</p>
+            <p class="mt-2 text-sm text-slate-400 font-mono">Powered by Group_5</p>
+        </div>
+    </footer>
+
+</body>
+</html>
